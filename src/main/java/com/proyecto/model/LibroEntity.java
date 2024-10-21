@@ -13,7 +13,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name ="tb_libro")
 public class LibroEntity {
@@ -39,6 +43,8 @@ public class LibroEntity {
 	
 	@Column(name="RestriccionEdad", columnDefinition = "INT DEFAULT NULL")
 	private Integer restriccionEdad;
+
+	private String urlImagen;
 	
 	@ManyToOne
 	@JoinColumn(name="IDAutor", nullable = false)
@@ -55,7 +61,7 @@ public class LibroEntity {
 
 	public LibroEntity(String iSBN, String titulo, String resenia, Double precio, Integer stock,
 			LocalDate fechapublicacion, Integer restriccionEdad, AutorEntity autorEntity,
-			EditorialEntity editorialEntity, Set<LibroCategoriaEntity> categorias,
+			EditorialEntity editorialEntity, String urlImagen, Set<LibroCategoriaEntity> categorias,
 			Set<DetallePedidoEntity> detallesPedidos) {
 		super();
 		ISBN = iSBN;
@@ -69,6 +75,7 @@ public class LibroEntity {
 		this.editorialEntity = editorialEntity;
 		this.categorias = categorias;
 		this.detallesPedidos = detallesPedidos;
+		this.urlImagen = urlImagen;
 	}
 
 	public LibroEntity() {

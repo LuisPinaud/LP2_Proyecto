@@ -10,6 +10,6 @@ public interface LibroService {
     List<LibroEntity>listadoLibros();
     void registrarLibro(LibroEntity nuevoLibro, MultipartFile imagen);
     LibroEntity buscarLibroPorId(String isbn);
-    void actualizarLibro(String isbn, LibroEntity libroActualizado);
+    void actualizarLibro(String isbn, LibroEntity libroActualizado, MultipartFile imagen);
     void eliminarLibro(String isbn);
 }

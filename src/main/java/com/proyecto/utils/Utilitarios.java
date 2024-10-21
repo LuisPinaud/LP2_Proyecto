@@ -7,15 +7,15 @@ import java.nio.file.Paths;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Utilitarios {
-    public static String guardarImagenLibro(MultipartFile imagen){
+    public static String guardarImagen(MultipartFile imagen){
         try {
-            Path pathDire = Paths.get("src/main/resources/static/img/libros/");
+            Path pathDire = Paths.get("src/main/resources/static/img/guardados/");
             if (!Files.exists(pathDire)) {
                 Files.createDirectories(pathDire);
             }
 
             byte[] bytes = imagen.getBytes();
-            Path path = Paths.get("src/main/resources/static/img/libros/"+imagen.getOriginalFilename());
+            Path path = Paths.get("src/main/resources/static/img/guardados/"+imagen.getOriginalFilename());
 
             Files.write(path, bytes);
             
