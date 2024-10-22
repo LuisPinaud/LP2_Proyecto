@@ -27,6 +27,8 @@ public class AdminServiceImpl implements AdminService{
 		//Hash password
 		String hashPassword = Utilitarios.hashPassword(adminEntity.getContrasenia());
 		adminEntity.setContrasenia(hashPassword);
+		
+		
 		adminRepository.save(adminEntity);
 	}
 

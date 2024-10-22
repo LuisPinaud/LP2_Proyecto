@@ -10,8 +10,8 @@ public interface AdminService {
 
 	void crearAdmin(AdministradorEntity adminEntity, MultipartFile foto);
 	List<AdministradorEntity> listarAdmins();
-	AdministradorEntity buscarPorId(Integer idAdmin);
+	AdministradorEntity buscarPorId(Integer IdAdmin);
 	boolean validadAdmin (AdministradorEntity adminEntity);
 	void actualizarAdmin(Integer idAdmin, AdministradorEntity administradorEntity);
-	void eliminarAdmin(Integer idAdmin);
+	void eliminarAdmin(Integer IdAdmin);
 }

@@ -1,5 +1,6 @@
 package com.proyecto.utils;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,7 +15,7 @@ public class Utilitarios {
             if (!Files.exists(pathDire)) {
                 Files.createDirectories(pathDire);
             }
-
+            
             byte[] fotoBytes= foto.getBytes();
     		Path pathImagen = Paths.get("src/main/resources/static/img/guardados/" + 
     				foto.getOriginalFilename());
@@ -22,9 +23,9 @@ public class Utilitarios {
     			Files.write(pathImagen, fotoBytes);
     			return foto.getOriginalFilename();
     			
-        } catch (Exception e) {
+        } catch (IOException e) {
             // TODO: handle exception
-            System.out.println(e.getMessage());
+            System.out.println("error al cargar la foto"+e.getMessage());
             return null;
         }
         

@@ -93,6 +93,12 @@ public class AdministradorEntity {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
+
+	@Override
+	public String toString() {
+		return "AdministradorEntity [IdAdmin=" + IdAdmin + ", nombreAdmin=" + nombreAdmin + ", apellidoAdmin="
+				+ apellidoAdmin + ", email=" + email + ", contrasenia=" + contrasenia + ", foto=" + foto + "]";
+	}
     
     
 	

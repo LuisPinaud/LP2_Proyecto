@@ -37,8 +37,8 @@ public class AdminController {
 		return("registrarAdmin");
 	}
 	@PostMapping("/registrarAdmin")
-	public String registrarAdmin(@ModelAttribute("admin") AdministradorEntity adminFormulario,
-			Model model, @RequestParam("foto") MultipartFile foto) {
+	public String registroAdmin(@ModelAttribute("admin")AdministradorEntity adminFormulario,
+			Model model, @RequestParam("fotoAdmin") MultipartFile foto) {
 		adminService.crearAdmin(adminFormulario, foto);
 		return "registrarAdmin";
 	}
