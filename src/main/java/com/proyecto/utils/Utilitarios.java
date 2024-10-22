@@ -4,26 +4,33 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Utilitarios {
-    public static String guardarImagen(MultipartFile imagen){
+    public static String guardarImagen(MultipartFile foto){
         try {
             Path pathDire = Paths.get("src/main/resources/static/img/guardados/");
             if (!Files.exists(pathDire)) {
                 Files.createDirectories(pathDire);
             }
 
-            byte[] bytes = imagen.getBytes();
-            Path path = Paths.get("src/main/resources/static/img/guardados/"+imagen.getOriginalFilename());
-
-            Files.write(path, bytes);
-            
-            return imagen.getOriginalFilename();
+            byte[] fotoBytes= foto.getBytes();
+    		Path pathImagen = Paths.get("src/main/resources/static/img/guardados/" + 
+    				foto.getOriginalFilename());
+    		
+    			Files.write(pathImagen, fotoBytes);
+    			return foto.getOriginalFilename();
+    			
         } catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
             return null;
         }
+        
+    }
+    
+    public static String hashPassword(String password) {
+    	return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 }

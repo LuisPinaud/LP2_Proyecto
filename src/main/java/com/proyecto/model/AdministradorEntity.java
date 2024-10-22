@@ -26,15 +26,20 @@ public class AdministradorEntity {
     
     @Column(name="Contrasenia", nullable = false, length = 255)
     private String contrasenia;
+    @Column(name ="fotoAdmin", nullable =false)
+    private String foto;
+
+    
 
 	public AdministradorEntity(Integer idAdmin, String nombreAdmin, String apellidoAdmin, String email,
-			String contrasenia) {
+			String contrasenia, String foto) {
 		super();
 		IdAdmin = idAdmin;
 		this.nombreAdmin = nombreAdmin;
 		this.apellidoAdmin = apellidoAdmin;
 		this.email = email;
 		this.contrasenia = contrasenia;
+		this.foto = foto;
 	}
 
 	public AdministradorEntity() {
@@ -79,6 +84,14 @@ public class AdministradorEntity {
 
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
     
     

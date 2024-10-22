@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+
 
 @Entity
 @Table(name="tb_cliente")
@@ -22,15 +24,23 @@ public class ClienteEntity {
 	private String email;
 	@Column(name="Contrasenia", nullable = false, columnDefinition = "VARCHAR(255)")
 	private String contrasenia;
+	
+	@Column(name="imagen_cliente", nullable=false)
+	private String urlImagen;
+	
+	
+	
 	public ClienteEntity(Integer idCliente, String nombreCliente, String apellidoCliente, String email,
-			String contrasenia) {
+			String contrasenia, String urlImagen) {
 		super();
 		this.idCliente = idCliente;
 		this.nombreCliente = nombreCliente;
 		this.apellidoCliente = apellidoCliente;
 		this.email = email;
 		this.contrasenia = contrasenia;
+		this.urlImagen = urlImagen;
 	}
+	
 	public ClienteEntity() {
 		super();
 	}
@@ -63,6 +73,12 @@ public class ClienteEntity {
 	}
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
+	}
+	public String getUrlImagen() {
+		return urlImagen;
+	}
+	public void setUrlImagen(String urlImagen) {
+		this.urlImagen = urlImagen;
 	}
 	
 	
