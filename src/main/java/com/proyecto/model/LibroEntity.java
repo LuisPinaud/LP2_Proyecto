@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -24,6 +25,7 @@ import lombok.Setter;
 public class LibroEntity {
 	@Id
 	@Column(name="ISBN", nullable = false, length = 20, insertable=false, updatable=false)//DetallePedidoEntity relation with
+	
 	private String ISBN;
 	
 	@Column(name="Titulo", unique=true, nullable = false, length = 200) //unique =true cause need a single title for each book
@@ -54,9 +56,8 @@ public class LibroEntity {
 	@JoinColumn(name="IDEditorial", nullable = false)
 	private EditorialEntity editorialEntity;
 	
-	@OneToMany(mappedBy = "libro")
-    private Set<LibroCategoriaEntity> categorias = new HashSet<>();
-	
+	@OneToMany(mappedBy = "libro", fetch = FetchType.EAGER)
+	private Set<LibroCategoriaEntity> categorias = new HashSet<>();
 	@Embedded
 	private LibroCategoriaId id;
 	

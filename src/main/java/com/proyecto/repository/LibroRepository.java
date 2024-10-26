@@ -9,5 +9,5 @@ import com.proyecto.model.LibroEntity;
 public interface LibroRepository extends JpaRepository<LibroEntity, String> {
 	
 	LibroEntity findByISBN(String isbn);
-    
+	
 }

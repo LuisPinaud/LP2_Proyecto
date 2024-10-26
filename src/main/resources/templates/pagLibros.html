@@ -44,12 +44,13 @@
             </button>
         </div>
         <div>
-            <a th:href="@{/generarPDF}" class="btn btn-primary">Generar PDF</a>
+            <a th:href="@{/admin/pdf_libros}" class="btn btn-primary">Generar PDF</a>
         </div>
     </div>
     <table class="table mt-4">
         <thead>
         <tr>
+        	<th>Imagen</th>
             <th>ISBN</th>
             <th>Título de libro</th>
             <th>Precio</th>
@@ -63,20 +64,27 @@
     </thead>
         <tbody>
             <tr th:each="libro : ${libros}">
-                <td th:text="${libro.isbn}"></td>
+            	<td th:text="${libro.urlImagen}"></td>
+                <td th:text="${libro.ISBN}"></td>
                 <td th:text="${libro.titulo}"></td>
                 <td th:text="${libro.precio}"></td>
                 <td th:text="${libro.stock}"></td>
-                <td th:text="${libro.fechaPublicacion}"></td>
-                <td th:text="${libro.autorEntity.nombreAutor}">w</td>
+                <td th:text="${libro.Fechapublicacion}"></td>
+                <td th:text="${libro.autorEntity.nombreAutor}"></td>
                 <td th:text="${libro.editorialEntity.nombreEditorial}"></td>
-                <td>
-                    <span th:each="categoria : ${libro.categorias}" th:text="${categoria.nombreCategoria}"></span>
-                </td>
-                <td>
-                    <a th:href="@{/productos/verProducto/{id}(id=${libro.id})}" class="btn btn-info">Ver</a>
-                    <a th:href="@{/productos/editarProducto/{id}(id=${libro.id})}" class="btn btn-info">Editar</a>
-                    <a th:href="@{/productos/eliminarProducto/{id}(id=${libro.id})}" class="btn btn-danger">Eliminar</a>
+              
+				<td>
+    				<ul>
+				        <li th:each="categoria : ${categorias}">
+				            <span th:text="${categoria.nombreCategoria}"></span>
+				        </li>
+				    </ul>
+				</td>
+            	<td>
+
+                    <a th:href="@{/admin/verLibro/{ISBN}(ISBN=${libro.ISBN})}" class="btn btn-info">Ver</a>
+                    <a th:href="@{/admin/editarLibro/{ISBN}(ISBN=${libro.ISBN})}" class="btn btn-info">Editar</a>
+                    <a th:href="@{/admin/eliminarLibro/{ISBN}(ISBN=${libro.ISBN})}" class="btn btn-danger">Eliminar</a>
                 </td>
             </tr>
         </tbody>
@@ -87,14 +95,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="agregarProductoModalLabel">Agregar Producto</h5>
+                <h5 class="modal-title" id="agregarProductoModalLabel">Agregar nuevo Libro</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/admin/agregarLibros}" method="post">
-                <div class="form-group">
+                <form th:action="@{/admin/agregarLibros}" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
                         <label for="isbn">ISBN</label>
                         <input type="text" class="form-control" id="isbn" name="isbn" required>
                     </div>
@@ -103,24 +111,39 @@
                         <input type="text" class="form-control" id="titulo" name="titulo" required>
                     </div>
                     <div class="form-group">
-    					<label for="precio">Precio</label>
-    					<input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
-					</div>
+                        <label for="precio">Precio</label>
+                        <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
+                    </div>
                     <div class="form-group">
                         <label for="stock">Stock</label>
                         <input type="number" class="form-control" id="stock" name="stock" required>
                     </div>
-                    <input type="date" id="fechapublicacion" name="fechapublicacion" th:field="*{Fechapublicacion}" class="form-control" >
                     <div class="form-group">
-							<label for="autorEntity">Autor</label>
-							<select class="form-control" id="autorEntity" name="autorEntity"> 
-								<option th:each="autor : ${autores}" 
-									th:value="${autor.idAutor}" 
-									th:text="${categoria.nombreAutor}">
-								</option>
-							</select>
-					</div>
-                    <!-- Agrega más campos según sea necesario -->
+                        <label for="Fechapublicacion">Fecha de Publicación</label>
+                        <input type="date" id="Fechapublicacion" name="Fechapublicacion" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoriaEntity">Categoría</label>
+                        <select class="form-control" id="categoriaEntity" name="categoriaEntity">
+                            <option th:each="categoria : ${categorias}"
+                                    th:value="${categoria.idCategoria}"
+                                    th:text="${categoria.nombreCategoria}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFilel">Imagen del Libro</label>
+                        <input name="foto" accept="image/*" required type="file" class="form-control-file" id="exampleFormControlFilel">
+                    </div>
+                    <div class="form-group">
+                        <label for="autorEntity">Autor</label>
+                        <select class="form-control" id="autorEntity" name="autorEntity">
+                            <option th:each="autor : ${autores}"
+                                    th:value="${autor.idAutor}"
+                                    th:text="${autor.nombreAutor}">
+                            </option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
             </div>
@@ -139,7 +162,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/categorias/agregar}" method="post">
+                <form th:action="@{/categoria/registrar}" method="post">
                     <div class="form-group">
                         <label for="nombreCategoria">Nombre de la Categoría</label>
                         <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" required>

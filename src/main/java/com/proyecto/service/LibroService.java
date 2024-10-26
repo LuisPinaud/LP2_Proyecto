@@ -14,9 +14,7 @@ public interface LibroService {
     Optional<LibroEntity> buscarLibroPorId(String isbn);
     void actualizarLibro(String isbn, LibroEntity libroActualizado, MultipartFile imagen);
     void eliminarLibro(String isbn);
-<<<<<<< HEAD
-    
-=======
+   
     List<Inventario> listaInventario();
->>>>>>> d6ab9e5684bb6005ea3ac1433eea4e0a500ea116
+
 }

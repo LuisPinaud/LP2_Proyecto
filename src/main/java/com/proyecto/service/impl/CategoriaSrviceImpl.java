@@ -14,12 +14,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CategoriaSrviceImpl implements CategoriaService {
-    @Autowired
+   @Autowired
     private CategoriaRepository categoriaRepository;
     
     @Override
     public List<CategoriaEntity> listadoCategorias() {
-        // TODO Auto-generated method stub
+        
         return categoriaRepository.findAll();
     }
 

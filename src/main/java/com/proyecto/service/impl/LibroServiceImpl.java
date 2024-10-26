@@ -19,14 +19,11 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-<<<<<<< HEAD
-public class LibroServiceImpl implements LibroService {
-    private final LibroRepository libroRepository;
-=======
+
 public class LibroServiceImpl implements LibroService{
-    @Autowired
+	@Autowired
 	private LibroRepository libroRepository;
->>>>>>> d6ab9e5684bb6005ea3ac1433eea4e0a500ea116
+
 
     @Override
     public List<LibroEntity> listadoLibros() {
@@ -37,6 +34,7 @@ public class LibroServiceImpl implements LibroService{
     @Transactional
     public void registrarLibro(LibroEntity nuevoLibro, MultipartFile imagen) {
         try {
+        	
             String nombreImagen = Utilitarios.guardarImagen(imagen);
             nuevoLibro.setUrlImagen(nombreImagen);
             libroRepository.save(nuevoLibro);

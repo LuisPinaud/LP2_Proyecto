@@ -21,16 +21,12 @@ public class CategoriaController {
         return "listCategorias"; 
     }
 
-    @GetMapping("/registrar")
-    public String mostrarFormularioRegistro(Model model) {
-        model.addAttribute("categoria", new CategoriaEntity());
-        return "categoriaRegister"; 
-    }
+    
 
     @PostMapping("/registrar")
     public String registrarCategoria(@ModelAttribute CategoriaEntity categoria) {
         categoriaService.registrarCategoria(categoria);
-        return "redirect:/categoria/listar";
+        return "redirect:/admin/libros";
     }
 
     @GetMapping("/editar/{id}")
