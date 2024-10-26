@@ -7,5 +7,6 @@ import com.proyecto.model.AdministradorEntity;
 
 @Repository
 public interface AdminRepository extends JpaRepository<AdministradorEntity, Integer>{
-
+	
+	AdministradorEntity findByEmail(String email);
 }

@@ -34,4 +34,9 @@ public class Utilitarios {
     public static String hashPassword(String password) {
     	return BCrypt.hashpw(password, BCrypt.gensalt());
     }
+
+	public static boolean checkPassword(String passwordFormulario, String hashPassword) {
+		
+		return BCrypt.checkpw(passwordFormulario, hashPassword);
+	}
 }

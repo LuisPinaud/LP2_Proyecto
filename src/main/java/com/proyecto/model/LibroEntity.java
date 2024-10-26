@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -22,7 +23,7 @@ import lombok.Setter;
 @Table(name ="tb_libro")
 public class LibroEntity {
 	@Id
-	@Column(name="ISBN", nullable = false, length = 20)//DetallePedidoEntity relation with
+	@Column(name="ISBN", nullable = false, length = 20, insertable=false, updatable=false)//DetallePedidoEntity relation with
 	private String ISBN;
 	
 	@Column(name="Titulo", unique=true, nullable = false, length = 200) //unique =true cause need a single title for each book
@@ -55,6 +56,11 @@ public class LibroEntity {
 	
 	@OneToMany(mappedBy = "libro")
     private Set<LibroCategoriaEntity> categorias = new HashSet<>();
+	
+	@Embedded
+	private LibroCategoriaId id;
+	
+	
 	
 	@OneToMany(mappedBy = "libro")
     private Set<DetallePedidoEntity> detallesPedidos = new HashSet<>();

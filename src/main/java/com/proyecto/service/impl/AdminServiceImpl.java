@@ -45,9 +45,17 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public boolean validadAdmin(AdministradorEntity adminEntity) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validarAdmin(AdministradorEntity adminFormulario) {
+		AdministradorEntity	adminEncontrado = adminRepository.findByEmail(adminFormulario.getEmail());
+		if(adminEncontrado==null) {
+			return false;
+		}
+		if(!Utilitarios.checkPassword(adminFormulario.getContrasenia(), 	
+				adminEncontrado.getContrasenia())) {
+			return false;
+		}
+		
+		return true;
 	}
 
 	@Override

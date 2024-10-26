@@ -47,45 +47,7 @@
     } 
 
     
-    /* Estilos para las opciones de perfil */
-
-	nav ul li {
-    position: relative;
-	}
-
-	nav ul li ul.opciones {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fefefe;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    padding: 10px 0;
-    min-width: 120px;
-	}
-
-	nav ul li:hover ul.opciones {
-    display: block;
-	}
-
-	nav ul li ul.opciones li {
-    width: 100%;
-    text-align: left;
-	}
-
-	nav ul li ul.opciones li a {
-    display: block;
-    padding: 10px;
-    color: #212121;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-	}
-
-	nav ul li ul.opciones li a:hover {
-    background-color: #f6f6f6;
-	}
-    
+   
 
 
     .header-container {
