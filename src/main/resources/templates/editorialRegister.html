@@ -24,7 +24,7 @@
                 <li>
                     <a href="#" class="active" style="text-decoration: none;">
                         <img src="img/administrador.png" alt="Icono Admin">
-                        <span th:text="${session.NombreAdmin}"></span>
+                        <!-- <span th:text="${session.NombreAdmin}"></span> -->
                     </a>
                 </li>
             </ul>
@@ -44,13 +44,12 @@
                         <h3>Registrar Editorial</h3>
                     </div>
                     <div class="container min-vh-100 d-flex justify-content-center align-items-center">
-                        <form th:action="@{/editoriales/register}" method="post" onsubmit="return validarFormulario()">
+                        <form th:action="@{/registrar_editorial}" th:object="${editorial}" method="post" onsubmit="return validarFormulario()">
                             <div class="form-group">
-                                <label>Nombre:</label>
-                                <input class="form-control" type="text" name="nombre" id="txtNomEditorial">
+                                <label for="nombreEditorial">Nombre:</label>
+                                <input class="form-control" type="text" th:field="*{nombreEditorial}" id="txtNomEditorial">
                             </div>
-                            <button type="button" class="btn btn-warning" 
-                                    th:onclick="|window.location.href='@{/editoriales/list}'|">Regresar</button>
+                            <a th:href="@{/lista_editorial}" class="btn btn-secondary">Regresar</a>
                             <button type="submit" class="btn btn-success">Registrar</button>
                         </form>
 

@@ -24,7 +24,7 @@
                 <li>
                     <a href="#" class="active" style="text-decoration: none;">
                         <img src="img/administrador.png" alt="Icono Admin">
-                        <span th:text="${session.NombreAdmin}"></span>
+                        <!-- <span th:text="${session.NombreAdmin}"></span> -->
                     </a>
                 </li>
             </ul>
@@ -44,15 +44,12 @@
                         <h3>Registrar Categoría</h3>
                     </div>
                     <div class="container min-vh-100 d-flex justify-content-center align-items-center">
-                        <form th:action="@{/CategoriasServlet(type='register')}" method="post" onsubmit="return validarFormulario()">
+                        <form th:action="@{/categoria/registrar}" th:object="${categoria}" method="post" onsubmit="return validarFormulario()">
                             <div class="form-group">
-                                <label>Nombre:</label>
-                                <input class="form-control" type="text" name="txtNomCategoria" id="txtNomCategoria">
+                                <label for="nombreCategoria">Nombre:</label>
+                                <input class="form-control" type="text" th:field="*{nombreCategoria}" id="txtNomCategoria">
                             </div>
-                            <button type="button" class="btn btn-warning"
-                                th:onclick="'window.location.href=\'' + @{/CategoriasServlet(type='list')} + '\''">
-                                Regresar
-                            </button>
+                            <a th:href="@{/categoria/listar}" class="btn btn-secondary">Regresar</a>
                             <button type="submit" class="btn btn-success">Registrar</button>
                         </form>
 

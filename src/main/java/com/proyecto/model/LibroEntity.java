@@ -170,6 +170,14 @@ public class LibroEntity {
 		this.detallesPedidos = detallesPedidos;
 	}
 
+	public String getUrlImagen() {
+		return urlImagen;
+	}
+
+	public void setUrlImagen(String urlImagen) {
+		this.urlImagen = urlImagen;
+	}
+
 	
 	
 	

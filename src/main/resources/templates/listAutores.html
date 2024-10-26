@@ -23,7 +23,7 @@
                 <li><a th:href="@{/reportes}" style="text-decoration: none;">Reportes</a></li>
                 <li><a href="#" class="active" style="text-decoration: none;">
                     <img src="img/administrador.png" alt="Icono Admin" th:src="@{img/administrador.png}"> 
-                    <span th:text="${sessionScope.NombreAdmin}"></span></a>
+                    <!-- <span th:text="${sessionScope.NombreAdmin}"></span> --></a>
                 </li>
             </ul>
         </nav>
@@ -44,8 +44,8 @@
                     </div>
                     <br>
                     <div class="col-12">
-                        <button type="button" class="btn btn-outline-primary" th:onClick="window.location='@{/autoresRegister}'">Registrar</button>
-                        <button type="button" class="btn btn-outline-warning" th:onClick="window.location='@{/mantenimiento}'">Regresar</button>
+                    	<a th:href="@{/autor/registrar}" class="btn btn-danger">Registrar</a>
+                        <a th:href="@{/mantenimiento}" class="btn btn-danger">Regresar</a>
                     </div>
                     <br> <br>
                     <div class="col-12">
@@ -59,16 +59,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="item : ${dataAutores}">
-                                    <td th:text="${item.idAutor}"></td>
-                                    <td th:text="${item.nombreAutor}"></td>
-                                    <td th:text="${item.apellidoAutor}"></td>
+                                <tr th:each="autor : ${autores}">
+                                    <td th:text="${autor.idAutor}"></td>
+                                    <td th:text="${autor.nombreAutor}"></td>
+                                    <td th:text="${autor.apellidoAutor}"></td>
                                     <td>
-                                        <a th:href="@{/AutoresServlet(type=info, id=${item.idAutor})}">
-                                            <img alt="" src="img/iconos/iconoInfo.png" width="30" height="30" title="Editar">
-                                        </a>
-                                        <a th:href="@{/AutoresServlet(type=delete, id=${item.idAutor})}">
-                                            <img alt="" src="img/iconos/iconoEliminar.png" width="30" height="30" title="Eliminar">
+                                    	<a th:href="@{/autor/editar/{id}(id=${autor.idAutor})}">
+                                            <img alt="Editar" src="img/iconos/iconoInfo.png" width="30" height="30" title="Editar">
+                                        </a> 
+                                        <a th:href="@{/autor/eliminar/{id}(id=${autor.idAutor})}">
+                                            <img alt="Eliminar" src="img/iconos/iconoEliminar.png" width="30" height="30" title="Eliminar">
                                         </a>
                                     </td>
                                 </tr>

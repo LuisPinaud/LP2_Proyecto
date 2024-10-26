@@ -2,6 +2,7 @@ package com.proyecto.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.model.CategoriaEntity;
@@ -13,8 +14,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CategoriaSrviceImpl implements CategoriaService {
-    
-    private final CategoriaRepository categoriaRepository;
+    @Autowired
+    private CategoriaRepository categoriaRepository;
     
     @Override
     public List<CategoriaEntity> listadoCategorias() {

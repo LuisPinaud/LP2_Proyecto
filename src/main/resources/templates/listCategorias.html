@@ -23,7 +23,7 @@
                 <li><a th:href="@{/reportes}" style="text-decoration: none;">Reportes</a></li>
                 <li><a href="#" class="active" style="text-decoration: none;">
                     <img src="img/administrador.png" alt="Icono Admin"> 
-                    <span th:text="${sessionScope.NombreAdmin}"></span></a>
+                   <!-- <span th:text="${sessionScope.NombreAdmin}"></span> --> </a>
                 </li>
             </ul>
         </nav>
@@ -44,8 +44,8 @@
                     </div>
                     <br>
                     <div class="col-12">
-                        <button type="button" class="btn btn-outline-primary" th:onClick="window.location='@{/categoriaRegister}'">Registrar</button>
-                        <button type="button" class="btn btn-outline-warning" th:onClick="window.location='@{/mantenimiento}'">Regresar</button>
+                    	<a th:href="@{/categoria/registrar}" class="btn btn-danger">Registrar</a>
+                        <a th:href="@{/mantenimiento}" class="btn btn-danger">Regresar</a>
                     </div>
                     <br> <br>
                     <div class="col-12">
@@ -58,15 +58,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="item : ${dataCategorias}">
-                                    <td th:text="${item.idCategoria}"></td>
-                                    <td th:text="${item.nombreCategoria}"></td>
+                                <tr th:each="categoria : ${categorias}">
+                                    <td th:text="${categoria.idCategoria}"></td>
+                                    <td th:text="${categoria.nombreCategoria}"></td>
                                     <td>
-                                        <a th:href="@{/CategoriasServlet(type=info, id=${item.idCategoria})}">
-                                            <img alt="" src="img/iconos/iconoInfo.png" width="30" height="30" title="Editar">
-                                        </a>
-                                        <a th:href="@{/CategoriasServlet(type=delete, id=${item.idCategoria})}">
-                                            <img alt="" src="img/iconos/iconoEliminar.png" width="30" height="30" title="Eliminar">
+                                    	<a th:href="@{/categoria/editar/{id}(id=${categoria.idCategoria})}">
+                                            <img alt="Editar" src="img/iconos/iconoInfo.png" width="30" height="30" title="Editar">
+                                        </a> 
+                                        <a th:href="@{/categoria/eliminar/{id}(id=${categoria.idCategoria})}">
+                                            <img alt="Eliminar" src="img/iconos/iconoEliminar.png" width="30" height="30" title="Eliminar">
                                         </a>
                                     </td>
                                 </tr>

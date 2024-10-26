@@ -24,7 +24,7 @@
                 <li>
                     <a href="#" class="active" style="text-decoration: none;">
                         <img src="img/administrador.png" alt="Icono Admin">
-                        <span th:text="${session.NombreAdmin}"></span>
+                        <!-- <span th:text="${session.NombreAdmin}"></span> -->
                     </a>
                 </li>
             </ul>
@@ -45,12 +45,13 @@
                     </div>
                     <br>
                     <div class="col-12">
-                        <form th:action="@{/reportes/inventarioPDF}" method="post">
-                            <button type="submit" class="btn btn-outline-danger">
-                                Descargar Reporte PDF <img width="15" height="15" src="img/iconos/iconoPDF.png">
-                            </button>
-                            <button type="button" th:onclick="|window.location.href='@{/reportes}'|" class="btn btn-outline-warning">Regresar</button>
-                        </form>
+                        
+                   
+                            <a target="_blank" th:href="@{/pdf_inventario}">
+                            Descargar Reporte PDF <img width="15" height="15" src="img/iconos/iconoPDF.png">
+                            </a> 
+							<a th:href="@{/reportes}" class="btn btn-danger">Regresar</a>
+                      
 
                         <div>
                             <p th:if="${mensaje}" th:text="${mensaje}"></p>
@@ -67,11 +68,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="item : ${dataInventario}"
-                                        th:style="${item.stock == 0 ? 'background-color: #ffe4e1;' : item.stock <= 20 ? 'background-color: #fdf9c4;' : ''}">
-                                        <td th:text="${item.titulo}"></td>
-                                        <td th:text="${item.stock}"></td>
-                                        <td th:text="${item.estado}"></td>
+                                    <tr th:each="libro : ${libros}"
+                                        th:style="${libro.stock == 0 ? 'background-color: #ffe4e1;' : libro.stock <= 20 ? 'background-color: #fdf9c4;' : ''}">
+                                        <td th:text="${libro.titulo}"></td>
+                                        <td th:text="${libro.stock}"></td>
+                                        <td th:text="${libro.estado}"></td>
                                     </tr>
                                 </tbody>
                             </table>

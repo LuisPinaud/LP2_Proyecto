@@ -2,6 +2,7 @@ package com.proyecto.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.model.AutorEntity;
@@ -13,8 +14,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AutorServiceImpl implements AutorService{
-
-    private final AutorRepository autorRepository;
+	@Autowired
+    private AutorRepository autorRepository;
 
     @Override
     public List<AutorEntity> listadoAutores() {

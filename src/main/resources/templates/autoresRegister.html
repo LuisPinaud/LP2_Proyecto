@@ -24,7 +24,7 @@
                 <li>
                     <a href="#" class="active" style="text-decoration: none;">
                         <img th:src="@{/img/administrador.png}" alt="Icono Admin"> 
-                        <span th:text="${session.NombreAdmin}"></span>
+                       <!-- <span th:text="${session.NombreAdmin}"></span> --> 
                     </a>
                 </li>
             </ul>
@@ -44,16 +44,17 @@
                         <h3>Registrar Autor</h3>
                     </div>
                     <div class="container min-vh-100 d-flex justify-content-center align-items-center">
-                        <form th:action="@{/AutoresServlet?type=register}" method="post" onsubmit="return validarFormulario()">
+                        <form th:action="@{/autor/registrar}" th:object="${autor}" method="post" onsubmit="return validarFormulario()">
                             <div class="form-group">
-                                <label for="txtNombres">Nombres:</label>
-                                <input class="form-control" type="text" name="txtNombres" id="txtNombres">
+                                <label for="nombreAutor">Nombres:</label>
+                                <input class="form-control" type="text" th:field="*{nombreAutor}" name="txtNombres" id="txtNombres">
                             </div>
                             <div class="form-group">
-                                <label for="txtApellidos">Apellidos:</label>
-                                <input class="form-control" type="text" name="txtApellidos" id="txtApellidos">
+                                <label for="apellidoAutor">Apellidos:</label>
+                                <input class="form-control" type="text" th:field="*{apellidoAutor}" name="txtApellidos" id="txtApellidos">
                             </div>
-                            <button type="button" class="btn btn-warning" th:onclick="'window.location.href=\'' + @{/AutoresServlet?type=list} + '\';'">Regresar</button>
+                            <a th:href="@{/autor/listar}" class="btn btn-secondary">Regresar</a>
+                            
                             <button type="submit" class="btn btn-success">Registrar</button>
                         </form>
                     </div>

@@ -2,6 +2,7 @@ package com.proyecto.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,8 +16,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ClienteServiceImpl implements ClienteService{
-    
-    private final ClienteRepository clienteRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     
     @Override

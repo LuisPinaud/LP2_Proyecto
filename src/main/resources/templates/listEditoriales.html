@@ -18,13 +18,13 @@
         <input type="checkbox" id="nav_check" hidden>
         <nav>
             <ul>
-                <li><a th:href="@{/LibrosServlet(type=list)}" style="text-decoration: none;">Catálogo</a></li>
+                <li><a th:href="@{/libros/list}" style="text-decoration: none;">Catálogo</a></li>
                 <li><a th:href="@{/mantenimiento}" style="text-decoration: none;">Mantenimiento</a></li>
                 <li><a th:href="@{/reportes}" style="text-decoration: none;">Reportes</a></li>
                 <li>
                     <a href="#" class="active" style="text-decoration: none;">
                         <img src="img/administrador.png" alt="Icono Admin"> 
-                        <span th:text="${sessionScope.NombreAdmin}"></span>
+                       <!-- <span th:text="${sessionScope.nombreAdmin}"></span> --> 
                     </a>
                 </li>
             </ul>
@@ -46,8 +46,8 @@
                     </div>
                     <br>
                     <div class="col-12">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="'location.href=\'/editorialRegister\''">Registrar</button>
-                        <button type="button" class="btn btn-outline-warning" th:onclick="'location.href=\'/mantenimiento\''">Regresar</button>
+                    	<a th:href="@{/registrar_editorial}" class="btn btn-danger">Registrar</a>
+                    	<a th:href="@{/mantenimiento}" class="btn btn-danger">Regresar</a>
                     </div>
                     <br><br>
                     <div class="col-12">
@@ -60,14 +60,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="item : ${dataEditoriales}">
-                                    <td th:text="${item.IDEditorial}"></td>
-                                    <td th:text="${item.nombreEditorial}"></td>
+                                <tr th:each="edit : ${lstEditorial}">
+                                    <td th:text="${edit.idEditorial}"></td>
+                                    <td th:text="${edit.nombreEditorial}"></td>
                                     <td>
-                                        <a th:href="@{/EditorialServlet(type=info, id=${item.IDEditorial})}">
+                                        <a th:href="@{/editar_editorial/{id}(id=${edit.idEditorial})}">
                                             <img alt="Editar" src="img/iconos/iconoInfo.png" width="30" height="30" title="Editar">
                                         </a> 
-                                        <a th:href="@{/EditorialServlet(type=delete, id=${item.IDEditorial})}">
+                                        <a th:href="@{/delete/{id}(id=${edit.idEditorial})}">
                                             <img alt="Eliminar" src="img/iconos/iconoEliminar.png" width="30" height="30" title="Eliminar">
                                         </a>
                                     </td>

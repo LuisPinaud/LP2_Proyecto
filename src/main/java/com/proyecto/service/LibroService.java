@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.proyecto.model.Inventario;
 import com.proyecto.model.LibroEntity;
 
 public interface LibroService {
@@ -12,4 +13,5 @@ public interface LibroService {
     LibroEntity buscarLibroPorId(String isbn);
     void actualizarLibro(String isbn, LibroEntity libroActualizado, MultipartFile imagen);
     void eliminarLibro(String isbn);
+    List<Inventario> listaInventario();
 }
