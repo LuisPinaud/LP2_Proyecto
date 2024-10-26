@@ -1,12 +1,15 @@
 package com.proyecto.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.proyecto.model.Inventario;
 import com.proyecto.model.LibroEntity;
 import com.proyecto.repository.LibroRepository;
 import com.proyecto.service.LibroService;
@@ -16,8 +19,14 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+<<<<<<< HEAD
 public class LibroServiceImpl implements LibroService {
     private final LibroRepository libroRepository;
+=======
+public class LibroServiceImpl implements LibroService{
+    @Autowired
+	private LibroRepository libroRepository;
+>>>>>>> d6ab9e5684bb6005ea3ac1433eea4e0a500ea116
 
     @Override
     public List<LibroEntity> listadoLibros() {
@@ -80,4 +89,17 @@ public class LibroServiceImpl implements LibroService {
             throw new RuntimeException("Error al eliminar el libro: " + e.getMessage());
         }
     }
+
+	@Override
+	public List<Inventario> listaInventario() {
+		List<LibroEntity> libros = libroRepository.findAll();
+        List<Inventario> inventarioList = new ArrayList<>();
+        for (LibroEntity libro : libros) {
+            String estado = libro.getStock() > 0 ? "En Stock" : "Fuera de Stock";
+            Inventario inventario = new Inventario(libro.getTitulo(),libro.getStock(),estado);
+            inventarioList.add(inventario);
+        }
+
+        return inventarioList;
+	}
 }

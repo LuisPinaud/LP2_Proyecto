@@ -24,7 +24,7 @@
                 <li>
                     <a href="#" class="active" style="text-decoration: none;">
                         <img src="img/administrador.png" alt="Icono Admin">
-                        <span th:text="${session.NombreAdmin}"></span>
+                        <!-- <span th:text="${session.NombreAdmin}"></span> -->
                     </a>
                 </li>
             </ul>
@@ -44,26 +44,23 @@
                         <h3>Detalles de Autor</h3>
                     </div>
                     <div class="container min-vh-100 d-flex justify-content-center align-items-center">
-                        <form th:action="@{/AutoresServlet(type='edit')}" method="post" onsubmit="return validarFormulario()">
+                        <form th:action="@{/autor/editar/{id}(id=${autor.idAutor})}" th:object="${autor}" method="post" onsubmit="return validarFormulario()">
                             <div class="form-group">
-                                <label>ID:</label>
+                                <label for="idAutor">ID:</label>                                
                                 <input class="form-control" type="text" name="txtID"
-                                    th:value="${autorData != null ? autorData.IDAutor : ''}" readonly>
+                                    th:field="*{idAutor}" readonly>
                             </div>
                             <div class="form-group">
-                                <label>Nombres:</label>
+                                <label for="nombreAutor">Nombres:</label> 
                                 <input class="form-control" type="text" name="txtNombres" id="txtNombres"
-                                    th:value="${autorData != null ? autorData.nombreAutor : ''}">
+                                    th:field="*{nombreAutor}">
                             </div>
                             <div class="form-group">
-                                <label>Apellidos:</label>
+                                <label for="apellidoAutor">Apellidos:</label>
                                 <input class="form-control" type="text" name="txtApellidos" id="txtApellidos"
-                                    th:value="${autorData != null ? autorData.apellidoAutor : ''}">
+                                    th:field="*{apellidoAutor}">
                             </div>
-                            <button type="button" class="btn btn-warning" 
-                                th:onclick="'window.location.href=\'' + @{/AutoresServlet(type='list')} + '\''">
-                                Regresar
-                            </button>
+                            <a th:href="@{/autor/listar}" class="btn btn-secondary">Regresar</a>
                             <button type="submit" class="btn btn-success">Actualizar</button>
                         </form>
 
