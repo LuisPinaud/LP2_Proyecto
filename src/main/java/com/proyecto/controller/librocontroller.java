@@ -36,7 +36,6 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/admin")
 @RequiredArgsConstructor
 public class LibroController {
 	
@@ -52,13 +51,13 @@ public class LibroController {
 	private PdfService pdfService;
 	
 	
-    @GetMapping("/libros")
+    @GetMapping("/listadoLibros")
     public String libros(Model model, HttpSession sesion) {
     	List<CategoriaEntity> listarCategorias= categoriaService.listadoCategorias();
         List<LibroEntity> listaLibros = libroService.listadoLibros();
         model.addAttribute("categorias", listarCategorias);
         model.addAttribute("libros", listaLibros);
-        return "pagLibros"; 
+        return "catalogoAdmi"; 
     }
     @GetMapping("/agregarLibros")
     public String mostrarFormularioAgregarLibro(Model model) {
@@ -70,7 +69,7 @@ public class LibroController {
         model.addAttribute("autores", listarAutores);
         model.addAttribute("categorias", listarCategoriaLibros);
         model.addAttribute("libro", new LibroEntity()); 
-        return "agregarLibro";
+        return "pagLibros";
     }
 
     @PostMapping("/agregarLibros")
@@ -82,13 +81,13 @@ public class LibroController {
     	model.addAttribute("categorias", CategoriaLibros);
     	model.addAttribute("libro", new LibroEntity());
     	libroService.registrarLibro(libroEntity, imagen);
-    	return "redirect:/admin/libros";
+    	return "redirect:/listadoLibros";
     }
     
     @GetMapping("/eliminarLibro/{id}")
     public String eliminarLibro(@PathVariable("id") String id) {
     	libroService.eliminarLibro(id);
-    	return "redirect:/admin/libros";
+    	return "redirect:/listadoLibros";
     }
     @GetMapping("/pdf_libros")
 	public ResponseEntity<InputStreamResource>generarPDF(HttpSession sesion)throws IOException{

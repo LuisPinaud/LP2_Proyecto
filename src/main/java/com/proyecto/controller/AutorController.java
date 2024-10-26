@@ -9,46 +9,46 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/autor")
+
 public class AutorController {
 	@Autowired
     private AutorService autorService;
 
-    @GetMapping("/listar")
+    @GetMapping("/listarAutores")
     public String listarAutores(Model model) {
         List<AutorEntity> autores = autorService.listadoAutores();
         model.addAttribute("autores", autores);
         return "listAutores";
     }
 
-    @GetMapping("/registrar")
+    @GetMapping("/registrarAutores")
     public String mostrarFormularioRegistro(Model model) {
         model.addAttribute("autor", new AutorEntity());
         return "autoresRegister";
     }
 
-    @PostMapping("/registrar")
+    @PostMapping("/registrarAutores")
     public String registrarAutor(@ModelAttribute AutorEntity autor) {
         autorService.registrarAutor(autor);
-        return "redirect:/autor/listar";
+        return "redirect:/listarAutores";
     }
 
-    @GetMapping("/editar/{id}")
+    @GetMapping("/editarAutor/{id}")
     public String mostrarFormularioEdicion(@PathVariable("id") Integer id, Model model) { 
         AutorEntity autor = autorService.buscarAutorPorId(id);
         model.addAttribute("autor", autor);
         return "autorInfo";
     }
 
-    @PostMapping("/editar/{id}")
+    @PostMapping("/editarAutor/{id}")
     public String actualizarAutor(@PathVariable("id") Integer id, @ModelAttribute AutorEntity autor) {
         autorService.actualizarAutor(id, autor); 
-        return "redirect:/autor/listar";
+        return "redirect:/listarAutores";
     }
 
-    @GetMapping("/eliminar/{id}")
+    @GetMapping("/eliminarAutor/{id}")
     public String eliminarAutor(@PathVariable("id") Integer id) { 
         autorService.eliminarAutor(id);
-        return "redirect:/autor/listar";
+        return "redirect:/listarAutores";
     }
 }

@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
-@RequestMapping("/cliente")
+
 @Controller
 public class ClienteController {
 	@Autowired
@@ -33,7 +33,7 @@ public class ClienteController {
 	public String registrarCliente(@ModelAttribute("cliente") ClienteEntity clienteFormulario,
 			Model model, @RequestParam("foto") MultipartFile foto) {
 		clienteService.crearCliente(clienteFormulario, foto);
-		return "listEditoriales";
+		return "";
 	}
 	
 	

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>CatÃ¡logo</title>
+    <title>Catálogo</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleU.css">
     <link rel="stylesheet" href="css/carrito.css">
@@ -16,18 +16,18 @@
     <header>
         <div class="logo">
             <img src="img/logo.png" alt="Logo">
-            <h1>RincÃ³n Literario</h1>
+            <h1>Rincón Literario</h1>
         </div>
         <input type="checkbox" id="nav_check" hidden>
         <nav>
             <ul>
-                <li><a th:href="@{/libros/list}" style="text-decoration: none;">CatÃ¡logo</a></li>
+                <li><a th:href="@{/listadoLibros}" style="text-decoration: none;">Catálogo</a></li>
                 <li><a th:href="@{/mantenimiento}" style="text-decoration: none;">Mantenimiento</a></li>
-                <li><a th:href="@{/reportes}" style="text-decoration: none;">Reportes</a></li>
+                <li><a th:href="@{/reportes}" style="text-decoration: none;">Reportes HOLAAA</a></li>
                 <li>
                     <a href="#" class="active" style="text-decoration: none;">
                         <img src="img/administrador.png" alt="Icono Admin">
-                        <span th:text="${session.NombreAdmin}"></span>
+                        <!-- <span th:text="${session.NombreAdmin}"> -->
                     </a>
                 </li>
             </ul>
@@ -40,24 +40,20 @@
     </header>
 
     <div class="contenedorCategorias">
-        <h2>CatÃ¡logo</h2>
+        <h2>Catálogo</h2>
         <div class="container mt-5">
-            <form th:action="@{/libros/buscar}" method="post" class="form-inline">
-                <input type="search" name="txtBuscar" class="form-control" placeholder="Buscar libros...">
-                <br>
-                <button type="submit" class="btn btn-outline-primary mb-2">Buscar</button>
-            </form>
+          
         </div>
         <hr>
         <div class="categorias">
             <div th:if="${dataLibros == null}">
-                <p>Â¡Error!</p>
+                <p>¡Error!</p>
             </div>
             <div th:if="${dataLibros != null} and ${dataLibros.empty}">
                 <p>No hay libros disponibles :(</p>
             </div>
-            <div th:each="libro : ${dataLibros}" class="categoriaFiccion">
-                <img th:src="@{/img/libros/{isbn}.webp(isbn=${libro.ISBN})}" 
+            <div th:each="libro : ${libros}" class="categoriaFiccion">
+                <img th:src="@{/img/libros/{isbn}=(isbn=${libro.ISBN})}" 
                      th:alt="${libro.titulo}">
                 <div class="categoriaInfo">
                     <h3 th:text="${libro.titulo}"></h3>

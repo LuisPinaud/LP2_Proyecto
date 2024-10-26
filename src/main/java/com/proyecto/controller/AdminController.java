@@ -36,11 +36,11 @@ public class AdminController {
 	    if (validarAdmin) {
 	        sesion.setAttribute("admin", adminFormulario.getEmail());
 	        System.out.println("Ingresó el usuairo: " + adminFormulario.getNombreAdmin());
-	        return "redirect:/lb/index";
+	        return "catalogoAdmi";
 	    }
 	    model.addAttribute("Invalido", "Credenciales erróneas"); 
 	    model.addAttribute("admin", new AdministradorEntity());
-	    return "loginAdministrador"; 
+	    return "redirect:/admin/login"; 
 	}
 
 	//Register
