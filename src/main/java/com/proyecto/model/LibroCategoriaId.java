@@ -4,33 +4,27 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 @Embeddable
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class LibroCategoriaId implements Serializable {
-	private static final long serialVersionUID = 1L; 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String isbn;
     private Integer idCategoria;
-	public LibroCategoriaId(String isbn, Integer idCategoria) {
-		super();
-		this.isbn = isbn;
-		this.idCategoria = idCategoria;
-	}
-	public LibroCategoriaId() {
-		super();
-	}
-	public String getIsbn() {
-		return isbn;
-	}
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-	public Integer getIdCategoria() {
-		return idCategoria;
-	}
-	public void setIdCategoria(Integer idCategoria) {
-		this.idCategoria = idCategoria;
-	}
-    
-	@Override
+
+
+
+    // equals y hashCode
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -42,4 +36,6 @@ public class LibroCategoriaId implements Serializable {
     public int hashCode() {
         return Objects.hash(isbn, idCategoria);
     }
+
+   
 }

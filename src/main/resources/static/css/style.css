@@ -9,14 +9,12 @@
     text-decoration: none;
 }
 
+
 body{
     background: #e3e9f7;
 }
 
-.logo img{
-    width: 3.5em;
-    height: 3.5em;
-}
+
 
 header{
     position: relative;
@@ -38,6 +36,11 @@ header{
     width: 120px;
     margin-top: 8px;
     gap: 30px;
+}
+.logo img{
+    width: 50%;
+    height: auto;
+    
 }
 
 .logo h1 {
@@ -76,6 +79,7 @@ nav ul li a.active{
     color: #fff;
 }
 
+	
 .hamburger {
     display: none;
     height: fit-content;

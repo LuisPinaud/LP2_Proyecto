@@ -23,7 +23,7 @@
                 <li>
                     <a href="#" class="active" style="text-decoration: none;">
                         <img src="img/administrador.png" alt="Icono Admin"> 
-                        <span th:text="${sessionScope.NombreAdmin}"></span>
+                        <span	></span>
                     </a>
                 </li>
             </ul>
@@ -42,14 +42,14 @@
                 <img src="img/iconos/iconoLibro.png" alt="">
                 <div class="categoriaInfo">
                     <h3>Libros</h3>
-                    <a th:href="@{/registrarLibro}" class="boton">Agregar</a>
+                    <a th:href="@{/admin/libros}" class="boton">Agregar</a>
                 </div>
             </div>
             <div class="categoriaNoFiccion">
                 <img src="img/iconos/iconoAutor.png" alt="">
                 <div class="categoriaInfo">
                     <h3>Autores</h3>
-                    <a th:href="@{/AutoresServlet(type=list)}" class="boton">Ver</a>
+                    <a th:href="@{/autores}" class="boton">Ver</a>
                 </div>
             </div>
         </div>

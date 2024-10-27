@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.proyecto.model.AdministradorEntity;
 import com.proyecto.service.AdminService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -22,16 +23,27 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	
+	//Log admins;
 	@GetMapping("/login")
-	public String loginAdmin() {
+	public String loginAdmin(Model model) {
+		model.addAttribute("admin",new AdministradorEntity());
 		return "loginAdministrador";
 	}
 	@PostMapping("/login")
-	public String logeoAdmin() {
-		return "";
+	public String logeoAdmin(@ModelAttribute("admin") AdministradorEntity adminFormulario,
+	                         Model model, HttpSession sesion) {
+	    boolean validarAdmin = adminService.validarAdmin(adminFormulario);
+	    if (validarAdmin) {
+	        sesion.setAttribute("admin", adminFormulario.getEmail());
+	        System.out.println("Ingresó el usuairo: " + adminFormulario.getNombreAdmin());
+	        return "catalogoAdmi";
+	    }
+	    model.addAttribute("Invalido", "Credenciales erróneas"); 
+	    model.addAttribute("admin", new AdministradorEntity());
+	    return "redirect:/admin/login"; 
 	}
 
+	//Register
 	@GetMapping("/registrarAdmin")
 	public String registrarAdmin(Model model) {
 		model.addAttribute("admin", new AdministradorEntity());
@@ -41,6 +53,10 @@ public class AdminController {
 	public String registroAdmin(@ModelAttribute("admin")AdministradorEntity adminFormulario,
 			Model model, @RequestParam("fotoAdmin") MultipartFile foto) {
 		adminService.crearAdmin(adminFormulario, foto);
-		return "registrarAdmin";
+		
+		return "loginAdministrador";
 	}
+	//List of Admins;
+	
+	
 }

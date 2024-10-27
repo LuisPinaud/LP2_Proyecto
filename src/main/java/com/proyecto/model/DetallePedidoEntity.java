@@ -30,7 +30,7 @@ public class DetallePedidoEntity {
     @MapsId("isbn") 
     @JoinColumn(name = "ISBN", nullable = false)
     private LibroEntity libro;
-
+    
 	public DetallePedidoEntity(DetallePedidoId id, Integer cantidad, Double precio, PedidoEntity pedido,
 			LibroEntity libro) {
 		super();

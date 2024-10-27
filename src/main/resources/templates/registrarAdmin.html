@@ -79,6 +79,7 @@
                             
                         </div>
                         <input type="submit" value="Registrarse">
+                        <a th:href="@{/admin/login}" class="btn-secondary">Volver al login</a>
                         <div class="alerta-error" style="display:none;"></div>
                         <div class="alerta-exito" th:if="${success}" th:text="${success}"></div>
                     </form>

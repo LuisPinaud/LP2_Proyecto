@@ -19,7 +19,7 @@ public class AutorServiceImpl implements AutorService{
 
     @Override
     public List<AutorEntity> listadoAutores() {
-        // TODO Auto-generated method stub
+        
         return autorRepository.findAll();
     }
 

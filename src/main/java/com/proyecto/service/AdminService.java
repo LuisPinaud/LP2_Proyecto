@@ -11,7 +11,7 @@ public interface AdminService {
 	void crearAdmin(AdministradorEntity adminEntity, MultipartFile foto);
 	List<AdministradorEntity> listarAdmins();
 	AdministradorEntity buscarPorId(Integer IdAdmin);
-	boolean validadAdmin (AdministradorEntity adminEntity);
+	boolean validarAdmin (AdministradorEntity adminEntity);
 	void actualizarAdmin(Integer idAdmin, AdministradorEntity administradorEntity);
 	void eliminarAdmin(Integer IdAdmin);
 }
